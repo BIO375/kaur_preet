@@ -132,7 +132,8 @@ summ_BEETLE96 <- sanchez %>%
             median_BEETLE96 = median(BEETLE96),
             IQR_BEETLE96 = IQR(BEETLE96),
             sd_BEETLE96 = sd(BEETLE96),
-            var_BEETLE96 = var(BEETLE96))
+            var_BEETLE96 = var(BEETLE96),
+            se_BEETLE96 = sd(BEETLE96)/sqrt(length(BEETLE96)))
 
 View(summ_BEETLE96)
 
