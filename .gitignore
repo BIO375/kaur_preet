@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+
+#excluding .DS_Store from pushes (mac specific file)
+.DS_Store

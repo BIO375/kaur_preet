@@ -14,6 +14,9 @@ tidyverse_update()
 ward_data<-read_csv("datasets/quinn/chpt3/ward.csv", col_names = TRUE)
 
 # Pasted from Import Dataset Tool
+library(readr)
+ward <- read_csv("datasets/quinn/chpt3/ward.csv")
+View(ward)
 # Note that for us, library(readr) is redundant because we loaded it with
 # all the other tidyverse packages earlier
 library(readr)
@@ -50,7 +53,8 @@ str(ward)
 
 summ_eggs <- ward %>%
 group_by(ZONE) %>% 
-  summarise(mean_eggs = mean(EGGS),
+  summarise(n_eggs = n(),
+            mean_eggs = mean(EGGS),
             median_eggs = median(EGGS),
             IQR_eggs = IQR(EGGS),
             sd_eggs = sd(EGGS),
@@ -69,13 +73,27 @@ compensation<-mutate(compensation, log(Root))
 # https://r4ds.had.co.nz/data-visualisation.html
 # Enter your code here
 
+library(tidyverse)
+ggplot2::ggplot()
+ggplot2::mpg
+?mpg
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
 
+ggplot(data = mpg) + 
+  geom_boxplot(mapping = aes(x = cyl, y = hwy))
 
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = class, y = drv))
 
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
 
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
 
-
-
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "green")
 
 
 # Compare the histograms and boxplots of EGGS and squareroot_eggs
@@ -96,13 +114,27 @@ ggplot(ward)+
 # Load the sanchez.csv file
 # Enter your code here
 
-
-
+sanchez<-read_csv("datasets/demos/sanchez.csv")
 
 
 # Calculate summary statistics
 # Enter your code here
+names(sanchez)
 
+head(sanchez)
+dim(sanchez)
+str(sanchez)
+
+summ_BEETLE96 <- sanchez %>%
+  group_by(birdcolony) %>% 
+  summarise(n_BEETLE96 = n(),
+            mean_BEETLE96 = mean(BEETLE96),
+            median_BEETLE96 = median(BEETLE96),
+            IQR_BEETLE96 = IQR(BEETLE96),
+            sd_BEETLE96 = sd(BEETLE96),
+            var_BEETLE96 = var(BEETLE96))
+
+View(summ_BEETLE96)
 
 
 
@@ -110,8 +142,9 @@ ggplot(ward)+
 
 # Add a new column of log(y+1) transformed beetle densities to the sanchez dataset
 # Enter your code here
-
-
+# <dataset_name> <- mutate(<dataset_name>, <transform_variable_name> =
+# <mathematical_function>(<variable_name>))
+sanchez <- mutate(sanchez, log_BEETLE96 = log(BEETLE96+1))
 
 
 
@@ -119,11 +152,20 @@ ggplot(ward)+
 # transformation
 # Enter your code here
 
+ggplot(sanchez) +
+  geom_histogram(aes(BEETLE96), binwidth = 11)+
+  facet_wrap(~birdcolony)
 
-
+ggplot(sanchez) +
+  geom_histogram(aes(log_BEETLE96), binwidth = 2)+
+  facet_wrap(~birdcolony)
 
 
 # Plot boxplots of beetle density by colony type before and after data 
 # transformation
 # Enter your code here
+ggplot(sanchez)+
+  geom_boxplot(aes(x = birdcolony, y = BEETLE96), notch = FALSE, varwidth = TRUE)
+ggplot(sanchez)+
+  geom_boxplot(aes(x = birdcolony, y = log_BEETLE96), notch = FALSE, varwidth = TRUE)
 
