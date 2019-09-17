@@ -71,21 +71,31 @@ ggplot(data)+
 # Dataset found at datasets/quinn/chpt2/lovett.csv
 # Enter your code below
 
-
+data2<-read_csv("datasets/quinn/chpt2/lovett.csv",col_names = TRUE,
+               col_types = cols(
+                 name = col_character() )
+)
 
 # Calculate summary statistics for SO4 and SO4MOD
 # Enter your code below
 
+summary(data2)
 
 
 # Calculate standard deviation for SO4 and SO4MOD
 # Enter your code below
 
+summarise(data2, sd_SO4 = sd(SO4), sd_SO4MOD = sd(SO4MOD))
 
 
 # Plot histograms of SO4 and Modified SO4 with appropriate bin sizes
 # Enter your code below
+ggplot(data2)+
+  geom_histogram(aes(SO4), binwidth = 6)
 
+
+ggplot(data2)+
+  geom_histogram(aes(SO4MOD), binwidth = 6)
 
 
 # Plot boxplots of SO4 and Modified SO4 using the code below.  
