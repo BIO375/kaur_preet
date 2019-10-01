@@ -73,7 +73,7 @@ wilcox.test(METRATE ~ SEX, data = Furness, alternative = "two.sided", conf.level
 ##untidy form (tidy form will be elgar2)
 Elgar <- read_csv("datasets/quinn/chpt3/elgar.csv")
 
-Elgar <- mutate(Elgar, diff = afterImplant - beforeImplant)
+Elgar <- mutate(Elgar, diff = ##afterImplant - beforeImplant)##
 ##paired t-test
 
 
