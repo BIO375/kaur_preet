@@ -170,3 +170,4 @@ ggplot(sanchez)+
 ggplot(sanchez)+
   geom_boxplot(aes(x = birdcolony, y = log_BEETLE96), notch = FALSE, varwidth = TRUE)
 
+### CODE RUNS CORRECTLY 10/10 ####
