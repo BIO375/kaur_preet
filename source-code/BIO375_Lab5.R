@@ -17,6 +17,7 @@ library("DescTools")
 # Read in data file, generic version
 #<name-you-assign><-read_csv("path-to-file", col_names = TRUE)
 
+
 ### One sample t-test #########################
 # Option A
 # The function pt() calculates the probability of t less than or equal to a sample value.  Note that this is 
