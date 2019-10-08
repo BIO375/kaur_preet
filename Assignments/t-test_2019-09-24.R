@@ -33,6 +33,7 @@ data02 <- data02 %>% slice (-105)
 
 #summary stats
 summ_HornLength <- data02 %>%
+  group_by(Survival) %>% 
   summarise(n_HornLength = n(),
             mean_HornLength = mean(squamosalHornLength),
             median_HornLength = median(squamosalHornLength),
@@ -50,5 +51,4 @@ ggplot(data02)+
 ggplot(data02) +
   geom_histogram(aes(squamosalHornLength), binwidth = 2)+
   facet_wrap(~Survival)
-
 
