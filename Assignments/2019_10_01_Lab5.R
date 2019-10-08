@@ -67,15 +67,24 @@ wilcox.test(METRATE ~ SEX, data = Furness, alternative = "two.sided", conf.level
 
 
 
-
-
 ##QUESTION 4
 ##untidy form (tidy form will be elgar2)
 Elgar <- read_csv("datasets/quinn/chpt3/elgar.csv")
 
-Elgar <- mutate(Elgar, diff = ##afterImplant - beforeImplant)##
-##paired t-test
+Elgar <- mutate(Elgar, diff = HORIZLIG - HORIZDIM)
 
+ggplot(Elgar) +
+  geom_histogram(aes(diff), binwidth = 60)
+
+ggplot(Elgar) +
+  geom_boxplot(aes(x = "", y = diff))
+
+ggplot(Elgar)+
+  geom_qq(aes(sample = diff))
+
+##paired t-test
+t.test(Elgar$HORIZLIG, Elgar$HORIZDIM, 
+       alternative = "two.sided", paired = TRUE, conf.level = 0.95)
 
 
 
