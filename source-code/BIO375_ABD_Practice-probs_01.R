@@ -15,9 +15,9 @@ tidyverse_update()
 # install.packages("DescTools")
 library("DescTools")
 
-# To simplify summary statistics, install and load the package summarytools
-install.packages("summarytools")
-library("summarytools")
+# To simplify summary statistics, install and load the package summarytools - didn't do this part b/c needed to download another thingy for it
+# install.packages("summarytools")
+# library("summarytools")
 
 # For later plotting
 install.packages("Hmisc")
@@ -53,7 +53,7 @@ t.test(eyeSpan ~ food, data = eyespan, alternative = "two.sided",
 # Data are paired, n = 12
 # Is assumption of normality met?
 fish <- read_csv("datasets/abd/chapter12/chap12q20ElectricFish.csv")
-summ_fish<-descr(fish)
+##summ_fish<-descr(fish) use summarize here instead of this code
 fish <- mutate(fish, diff = speciesUpstream - speciesDownstream)
 # Because n = 12, just do boxplot and q-q
 ggplot(fish) +
