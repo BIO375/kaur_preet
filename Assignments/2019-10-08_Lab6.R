@@ -1,5 +1,3 @@
-# tip: dont use summary tools, use summarize; explain why normality is/isn't met (if it isn't do sign test or mann-whitney u test)
-
 rm(list = ls())
 getwd()
 install.packages("tidyverse") 
@@ -42,9 +40,8 @@ ggplot(data01) +
 ggplot(data01)+
   geom_qq(aes(sample = skinColor, color = species))
 
-#Normality was met but due to high ratio (4.30, which is greater than 3), using Welch's test
+#Normality was met as the boxplot showed lines central to the box and the lines in the qq plot were quite straight, but due to high ratio (4.30, which is greater than 3), using Welch's test
 t.test (skinColor ~ species, data = data01, alternative = "two.sided", conf.level = 0.95)
-
 
 # transformation
 data01 <- mutate(data01, log_skincolor = log(skinColor))
@@ -72,7 +69,7 @@ ggplot(data01) +
 
 ggplot(data01)+
   geom_qq(aes(sample = log_skincolor, color = species))
-# ratio was less than 3 (2.62) and normality met (the median was very close to the center of the IQR box, lines in qq plot were close to being straight, histogram showed a normal (bell curve) looking plot)therefore can use two sample t-test
+# ratio was less than 3 (2.62) and normality met (the median was very close to the center of the IQR box, lines in qq plot were close to being straight, histogram showed a normal (bell curve) looking plot)) therefore can use two sample t-test
 t.test(log_skincolor ~ species, data = data01, var.equal = TRUE, alternative = "two.sided", conf.level = 0.95)
 
 #a. list two methods that would be appropriate to test whether there was a difference in mean skin color between the two groups
@@ -156,7 +153,7 @@ t.test(secondsAggressiveActivity ~ genotype, data = data04, var.equal = TRUE, al
 #a. estimate the magnitude of the effect of the mutation (diff between means) on the amount of time spent in aggressive activity. put appropriate bounds on your estimate of the effect 
 ### The confidence interval is 25.93 to 110.26 which is a very broad range. 
 #b. what is the weight of evidence that this effect is not zero? (pvalue) perform appropriate stat test of diff
-### The weight of evidene that the effect is not zero is 0.003142 (the p-value). There is a difference between individuals who had the gene and those who did not in terms of how long they will aggressively act when shown a mirror (t = 3.3802, df = 19, p-value = 0.003142).
+### The weight of evidence that the effect is not zero is 0.003142 (the p-value). There is a difference between individuals who had the gene and those who did not in terms of how long they will aggressively act when shown a mirror (t = 3.3802, df = 19, p-value = 0.003142).
 
 
 
