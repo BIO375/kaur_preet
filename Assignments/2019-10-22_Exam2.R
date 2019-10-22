@@ -27,7 +27,9 @@ ggplot(data01)+
 # One-sided, HA that typical feather is more yellow than odd feather
 t.test(data01$typical, data01$odd, 
        alternative = "greater", paired =  TRUE, conf.level = 0.95)
-
+#mutating the untidy data into tidy format
+tidy_data01 <- data01 %>%
+  gather(typical, odd, key="feather", value = "yellowness")
 
 
 # Problem 10 ####
