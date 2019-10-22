@@ -29,6 +29,7 @@ t.test(data01$typical, data01$odd,
        alternative = "greater", paired =  TRUE, conf.level = 0.95)
 
 
+
 # Problem 10 ####
 #read in the dataset
 data02 <- read.csv("datasets/exams/baker.csv")
@@ -59,7 +60,6 @@ summ_growthrate <- data03 %>%
   summarise(mean_growthrate = mean(growthrate),
             sd_growthrate = sd(growthrate),
             n_growthrate = n())
-
 # see if homoscedasticity assumption is met (low variability)
 ratio01 <-(max(summ_growthrate$sd_growthrate))/(min(summ_growthrate$sd_growthrate))
 # ratio (1.13) is less than 3 therefore homoscedasticity assumption is met
@@ -75,12 +75,6 @@ ggplot(data03)+
   geom_qq(aes(sample = growthrate, color = treatment))
 #normality assumption is met therefore can use two-sided two-sample t-test
 t.test(growthrate ~ treatment, data = data03, var.equal = TRUE, alternative = "two.sided", conf.level = 0.95)
-
-
-
-
-
-
 
 
 
