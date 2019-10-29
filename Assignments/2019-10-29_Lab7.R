@@ -92,7 +92,13 @@ anova(model_aldrin01)
 anova(model_aldrin02)
 anova(model_hcb)
 
+# Tukey-Kramer Honestly Significantly Difference (HSD) to see which pairs are significantly different;
+# look at the pr(>ltl) value and if it is less than 0.05 then significant, if above then not sig.
+tukeyaldrin <- glht(model_aldrin02, linfct = mcp(Depth = "Tukey"))
+summary(tukeyaldrin)
 
+tukeyhcb <- glht(model_hcb, linfct = mcp(Depth = "Tukey"))
+summary(tukeyhcb)
 
 
 
