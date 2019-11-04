@@ -159,7 +159,6 @@ summary(tukey)
 # This is a very simple test output, it gives you a test statistic, df, and p
 
 kruskal.test(growth.rate ~ parasite, data = daphnia)
-summary(kruskal)
 
 ### Robust Welch's ANOVA ####
 
