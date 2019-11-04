@@ -79,6 +79,8 @@ ggplot(data03)+
 t.test(growthrate ~ treatment, data = data03, var.equal = TRUE, alternative = "two.sided", conf.level = 0.95)
 
 
+### CODE RUNS WITHOUT BREAKS, GOOD JOB, 6/6 PTS ####
+
 
 
 
