@@ -73,8 +73,8 @@ planned02 <- glht(model02, linfct =
                   mcp(habitat = c("island.present - island.absent = 0")))
 confint(planned02)
 summary(planned02)
-# The two groups, squirrels on islands and squirrels not on islands are significantly different 
-#(planned comparison, t=-8.596, p<0.001)
+# The mean cone size of squirrels absent on islands is significantly less than squirrels present on islands 
+#(planned comparison, t=-8.596, p<0.001).
 
 
 #### Ch 15 Problem 26, Use data to perform the correct test, show code for all steps in your process ####
