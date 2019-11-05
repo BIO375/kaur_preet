@@ -26,7 +26,7 @@ tidyverse_update()
 #### Problem 15-22 ####
 # Complete parts a, b, c, d
 
-#### Problem 15-22 ####
+#### Problem 15-23 ####
 # Complete parts a and c only
 
 #### Problem 15-26 ####
