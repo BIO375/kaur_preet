@@ -54,7 +54,7 @@ ggplot(data02)+
 # One-sided, HA that Before is less than After; expecting more negatives
 SignTest(data02$diff, alternative = "less", mu = 0, conf.level = 0.95)
 
-# One-sided, HA that After is less than Before; expecting more positives
+# One-sided, HA that After is greater than Before; expecting more positives
 SignTest(data02.1$diff, alternative = "greater", mu = 0, conf.level = 0.95)
 
 
