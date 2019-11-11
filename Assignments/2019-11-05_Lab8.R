@@ -80,9 +80,17 @@ summary(planned02)
 #### Ch 15 Problem 26, Use data to perform the correct test, show code for all steps in your process ####
 data03 <- read_csv("datasets/abd/chapter15/chap15q26MalariaFungusVenom.csv", col_types = cols(
   treatmentGroup = col_factor()))
-
-
-
+#plot and check normality
+ggplot(data03, aes(x = treatmentGroup, y = logSporozoiteNumbers))+
+  geom_boxplot() +
+  theme_bw() +
+  coord_flip()
+ggplot(data03) +
+  geom_histogram(aes(logSporozoiteNumbers), binwidth = 0.9)+
+  facet_wrap(~treatmentGroup)
+ggplot(data03)+
+  geom_qq(aes(sample = logSporozoiteNumbers, color = treatmentGroup))
+#
 
 #### Ch 15 Problem 30, Use data to perform the correct test, show code for all steps in your process ####
 data04 <- read_csv("datasets/abd/chapter15/chap15q30FiddlerCrabFans.csv", col_types = cols(

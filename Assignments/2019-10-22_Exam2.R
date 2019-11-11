@@ -38,6 +38,9 @@ data02 <- read.csv("datasets/exams/baker.csv")
 # mutate the dataset to add a difference column called diff
 # diff = Before - After
 data02 <- mutate(data02, diff = Before - After)
+
+#diff = After - Before
+data02.1 <- mutate(data02, diff= After- Before)
 # see if assumption of normality is met
 ggplot(data02) +
   geom_histogram(aes(diff), binwidth = 5)
@@ -48,8 +51,11 @@ ggplot(data02) +
 ggplot(data02)+
   geom_qq(aes(sample = diff))
 # not normal therefore cannot do paired t-test and must do non parametric sign test
-# One-sided, HA that Before is less than After
+# One-sided, HA that Before is less than After; expecting more negatives
 SignTest(data02$diff, alternative = "less", mu = 0, conf.level = 0.95)
+
+# One-sided, HA that After is less than Before; expecting more positives
+SignTest(data02.1$diff, alternative = "greater", mu = 0, conf.level = 0.95)
 
 
 
