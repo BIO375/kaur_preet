@@ -43,6 +43,7 @@ repeatability
 data02 <- read_csv("datasets/abd/chapter15/chap15q23LodgepolePineCones.csv", col_types = cols(
   habitat = col_factor()))
 
+#plot data
 ggplot(data02, aes(x = habitat, y = conemass))+
   geom_boxplot() +
   theme_bw() +
@@ -53,19 +54,26 @@ ggplot(data02) +
 ggplot(data02)+
   geom_qq(aes(sample = conemass, color = habitat))
 
+#assumption of normality met (medians are about central for all three plots and whiskers are about equal
+# lengths as well for island.absent. mainland.present is a bit left skewed because right whisker is a bit
+# longer than left and median is a bit more to the right, and island.present is a little right skewed
+# because left whisker is longer than right and median is a bit more to the left but both are still pretty
+#central with no outliers. also qq plot lines are pretty linear), fixed effect anova model
 model02 <- lm(conemass~habitat, data = data02)
 
+#check homogeneity assumption
 summ_conemass <- data02 %>%
   group_by(habitat) %>% 
   summarise(mean_conemass = mean(conemass),
             sd_conemass = sd(conemass),
             n_conemass = n())
 ratio02 <-(max(summ_conemass$sd_conemass))/(min(summ_conemass$sd_conemass))
-
+#ratio is 1.3354 which is less than 3 thus assumption is met
+#see residuals vs fitted plot
 autoplot(model02)
 
 anova(model02)
-
+# F2,13 = 50.085, p-value < 0.0001 (a little confused as to why the df residual is 13 and not 14)
 summary(model02)
 
 #this comparison is a planned comparison
@@ -74,7 +82,7 @@ planned02 <- glht(model02, linfct =
 confint(planned02)
 summary(planned02)
 # The mean cone size (mass) on islands where squirrels were absent is significantly greater than islands 
-# where squirrels were present (planned comparison, t=-8.596, p<0.001).
+# where squirrels were present (planned comparison, t=-8.596, p<0.0001).
 
 
 #### Ch 15 Problem 26, Use data to perform the correct test, show code for all steps in your process ####
@@ -90,7 +98,27 @@ ggplot(data03) +
   facet_wrap(~treatmentGroup)
 ggplot(data03)+
   geom_qq(aes(sample = logSporozoiteNumbers, color = treatmentGroup))
-#
+# For the control and WT the median was central, with WT having a longer left whisker than right but still
+#relatively normal.Scorpine had a median that was slightly to the right but whiskers than were about equal
+#lengths, however there were two outliers. All in all relatively normal - assumption met. 
+
+#check homogeneity assumption
+summ_logSporozoiteNumbers <- data03 %>%
+  group_by(treatmentGroup) %>% 
+  summarise(mean_logSporozoiteNumbers = mean(logSporozoiteNumbers),
+            sd_logSporozoiteNumbers = sd(logSporozoiteNumbers),
+            n_logSporozoiteNumbers = n())
+ratio03 <-(max(summ_logSporozoiteNumbers$sd_logSporozoiteNumbers))/(min(summ_logSporozoiteNumbers$sd_logSporozoiteNumbers))
+# ratio was 2.8849 which is less than 3 therefore assumption of homogeneity is met
+#anova fixed effects model
+model03 <- lm(logSporozoiteNumbers~treatmentGroup, data = data03)
+
+#check residuals versus fitted plot
+autoplot(model03)
+anova(model03)
+summary(model03)
+# 
+
 
 #### Ch 15 Problem 30, Use data to perform the correct test, show code for all steps in your process ####
 data04 <- read_csv("datasets/abd/chapter15/chap15q30FiddlerCrabFans.csv", col_types = cols(
