@@ -115,17 +115,63 @@ model03 <- lm(logSporozoiteNumbers~treatmentGroup, data = data03)
 
 #check residuals versus fitted plot
 autoplot(model03)
-anova(model03)
-summary(model03)
-# 
 
+anova(model03)
+
+summary(model03)
+
+# p-value < 0.0001 therefore significantly different and can run comparison
+# unpanned comparison
+tukey03 <- glht(model03, linfct = mcp(treatmentGroup = "Tukey"))
+summary(tukey03)
+#There is a significant difference between scorpine and control group, as well as scorpine and wildtype
+#group, with scorpine having less sporozoites in the salivary glands of the mosquito (Tukey, p-value<0.0001).
+#Using the unmodified fungus does not result in a significant difference in comparison to the control.
 
 #### Ch 15 Problem 30, Use data to perform the correct test, show code for all steps in your process ####
 data04 <- read_csv("datasets/abd/chapter15/chap15q30FiddlerCrabFans.csv", col_types = cols(
   crabType = col_factor()))
 data04 <- slice(data04, -85)
+#check plots
+ggplot(data04, aes(x = crabType, y = bodyTemperature))+
+  geom_boxplot() +
+  theme_bw() +
+  coord_flip()
+ggplot(data04) +
+  geom_histogram(aes(bodyTemperature), binwidth = 0.3)+
+  facet_wrap(~crabType)
+ggplot(data04)+
+  geom_qq(aes(sample = bodyTemperature, color = crabType))
+# assumption of normality met, the medians were very close to the middle of the box, female had equal 
+# whisker lengths, intact male had about equal whisker lengths, male minor removed had a longer left
+# whisker than right and the median was a little to the left thus making it a little right skewed. male
+# major removed had a longer right whisker than left but fairly central median. There were outliers, but
+# becuase the median was relatively central for the box plot, because the qqplot had linear plots
+#, and the histograms were also relatively normal, I would say assumption of normality has been met.
 
+summ_bodyTemperature <- data04 %>%
+  group_by(crabType) %>% 
+  summarise(mean_bodyTemperature = mean(bodyTemperature),
+            sd_bodyTemperature = sd(bodyTemperature),
+            n_bodyTemperature = n())
+ratio04 <-(max(summ_bodyTemperature$sd_bodyTemperature))/(min(summ_bodyTemperature$sd_bodyTemperature))
+#ratio is 1.1788 which is less than three thus the assumption of homogeneity has been met
+#anova fixed effects model
+model04 <- lm(bodyTemperature~crabType, data = data04)
 
+#check residuals versus fitted plot
+autoplot(model04)
 
+anova(model04)
 
-
+summary(model04)
+#There is a significant difference between the groups (fixed effects anova, F3,80=20.31, p<0.0001).
+#unplanned comparison
+tukey04 <- glht(model04, linfct = mcp(crabType = "Tukey"))
+summary(tukey04)
+# There is a significant difference between the female group and males from all groups (Tukey, 
+#p-value <0.001). In comparison to the female group, the three male groups had lower body temperatures. 
+#There was also a significant difference between the male major removed and male minor removed group with 
+#major removed group having a higher body temperature (Tukey, p-value= 0.0106). However there was no 
+#significant body temperature difference between removing an appendage on a male and keeping all 
+# appendages intact on the male (tukey, p-value>0.05).
