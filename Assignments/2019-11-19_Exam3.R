@@ -16,6 +16,24 @@ aphids <- read_csv("datasets/exams/aphids.csv", col_types = cols(gall_number = c
 
 #Problem 11####
 glucose <- read_csv("datasets/exams/glucose.csv")
+#checking assumption of bivariate normality
+ggplot(data = glucose) +
+  geom_point(mapping = aes(x = blood_glucose, y = HbA1c ))
+# plot some stuff to see if x and y are normally distributed
+ggplot(data = glucose)+
+  geom_histogram(aes(blood_glucose), binwidth = 5)
+ggplot(data = glucose)+
+  geom_histogram(aes(HbA1c), binwidth = 5)
+
+ggplot(data = glucose)+
+  geom_boxplot(aes("", HbA1c))
+ggplot(data = glucose)+
+  geom_qq(aes(sample = HbA1c))
+
+# correlation test
+glucoseCor <- cor.test(~ blood_glucose + HbA1c, data = glucose,
+                     method = "pearson")
+glucoseCor
 
 
 #Problem 12 ####
