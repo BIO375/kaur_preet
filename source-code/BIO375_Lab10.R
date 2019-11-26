@@ -43,7 +43,7 @@ model02 <- binom.test(x= 28, n=41, p=0.5, alternative = "greater", conf.level = 
 model02
 
 # So we can conclude that females occured more frequently than expected in the wilderness population in Alaska 
-# (binomial test: P < 0.05, n=46) but not in the Kevo population (binomial test: P > 0.05 n=41).
+# (binomial test: P < 0.05, n=41) but not in the Kevo population (binomial test: P > 0.05 n=46).
 
 ### Chi-squared goodness of fit ####
 
