@@ -17,14 +17,10 @@ model01 <- binom.test(x= 41, n=90, p=0.5, alternative = "greater", conf.level = 
 model01
 
 ### Chi-squared goodness of fit ####
-tab02 <- matrix(c(84, 0.75, 16, 0.25), 2, 2, byrow=TRUE)
-# Add row names, then column names with the function dimnames()
-dimnames(tab02) <- list("Flower" = c("Yellow", "Green"),
-                        "Number" = c("Observed", "Expectedp"))
-as.matrix(tab02)
-model02 <-chisq.test(x= tab02$Observed, p = tab02$Expectedp)
-model02
+plant <- read_csv("datasets/demos/plant.csv", col_types = cols(color = col_factor())) 
 
+model02 <-chisq.test(x = plant$observed, p = plant$expected_p)
+model02
 
 ### Contingency table analysis
 tab01 <- matrix(c(30, 17, 41, 49), 2, 2, byrow=TRUE)
