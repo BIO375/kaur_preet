@@ -160,6 +160,10 @@ t.test(secondsAggressiveActivity ~ genotype, data = data04, var.equal = TRUE, al
 
 
 
+# Q25: I would argue that normality is violated, based on the asymptotic Q-Q plot.  I won't count points
+# off, but FYI.
+
+### 24/24 pts total ####
 
 
 

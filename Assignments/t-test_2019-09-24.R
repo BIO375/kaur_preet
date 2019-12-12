@@ -52,3 +52,4 @@ ggplot(data02) +
   geom_histogram(aes(squamosalHornLength), binwidth = 2)+
   facet_wrap(~Survival)
 
+### 10/10 Code runs without breaking ####
