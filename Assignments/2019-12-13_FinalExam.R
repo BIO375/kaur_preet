@@ -74,8 +74,10 @@ plannedcaffeine <- glht(modelcaffeine, linfct =
 confint(plannedcaffeine)
 summary(plannedcaffeine)
 
-#Scenario 3 ####
-
+#Scenario 3 (chi square goodness of fit)####
+davis <- read_csv("datasets/final/davis.csv", col_types = cols(race_ethn = col_factor()))
+modeldavis <-chisq.test(x = davis$observed, p = davis$expected_p)
+modeldavis
 
 
 
