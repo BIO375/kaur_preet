@@ -100,6 +100,11 @@ summary(tukeyaldrin)
 tukeyhcb <- glht(model_hcb, linfct = mcp(Depth = "Tukey"))
 summary(tukeyhcb)
 
+#We found that the log-transformed aldrin concentration was significantly different among sampling depths 
+#(One-way ANOVA: F = 5.59; df = 2,27; P = 0.009). 
+#Tukey's HSD test revealed bottom concentrations were significantly higher than surface concentrations. 
+#With respect to HCD concentration, we found no significant difference among sampling depths 
+#(One-way ANOVA: F = 3.03; df = 2,27 ; p = 0.06487)
 
 
 
