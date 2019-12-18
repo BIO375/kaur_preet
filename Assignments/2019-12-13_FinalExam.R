@@ -80,4 +80,4 @@ modeldavis <-chisq.test(x = davis$observed, p = davis$expected_p)
 modeldavis
 
 
-
+#### 10/10 code runs without breaking ####

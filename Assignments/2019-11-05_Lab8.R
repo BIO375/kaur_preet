@@ -175,3 +175,5 @@ summary(tukey04)
 #major removed group having a higher body temperature (Tukey, p-value= 0.0106). However there was no 
 #significant body temperature difference between removing an appendage on a male and keeping all 
 # appendages intact on the male (tukey, p-value>0.05).
+
+### 26/26 pts ####
